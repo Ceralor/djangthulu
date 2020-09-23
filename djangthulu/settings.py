@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 
 from pathlib import Path
 from platform import node as gethostname
+from os import environ
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -26,8 +27,10 @@ SECRET_KEY = '%ooho!5!^e(r)*sjjfe0)fi2k6z$ji9xq*d$izk1g4@o5wb+bm'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-#ALLOWED_HOSTS = [gethostname(),gethostname().split('.')[0]]
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [gethostname(),gethostname().split('.')[0]]
+ALLOWED_HOSTS.extend(('localhost','127.0.0.1'))
+if 'ALLOWED_HOSTS' in environ.keys():
+    ALLOWED_HOSTS.extend(environ['ALLOWED_HOSTS'].split(':'))
 # Application definition
 
 INSTALLED_APPS = [
@@ -106,7 +109,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'Central'
+TIME_ZONE = 'UTC'
 
 USE_I18N = True
 
