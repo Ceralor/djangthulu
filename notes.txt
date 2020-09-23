@@ -1,0 +1,2 @@
+Skill checkboxes indicate "skill check", succeeding in a session at a skill roll. Indicates get 1d10 after rolling for higher than the skill %.
+
